@@ -1,4 +1,4 @@
-#reference from this article
+#reference used from this article
 # "https://medium.com/analytics-vidhya/simulating-the-solar-system-with-under-100-lines-of-python-code-5c53b3039fc6"
 
 import numpy as np
@@ -7,9 +7,8 @@ import matplotlib.animation as animation
 from astropy.time import Time
 from astroquery.jplhorizons import Horizons
 
-sim_start_date = "2021-08-21"
+sim_start_date = "2021-08-21" 
 sim_duration = 5*365
-# m_earth = 
 
 class Object:
     def __init__(self, name, rad, color, r, v):
@@ -56,18 +55,17 @@ ax=plt.axes([0.,0.,1.,1.], xlim=(-4.0, 4.0), ylim=(-2.0, 2.0))
 ax.set_aspect('equal')
 ax.axis('off')
 ax.imshow(img, extent = [-4, 4, -2, 2])
-# , extent=[0, 400, 0, 300])
 ss = SolarSystem(Object("Sun", 28, 'red', [0,0,0],[0,0,0]))
 ss.time = Time(sim_start_date).jd
 colors = ['grey','orange', 'blue', 'chocolate']
 sizes = [0.38, 0.95, 1.0, 0.53]
 names = ['Mercury', 'Venus', 'Earth', 'Mars']
-orbrad = [0.47, 0.73, 1, 1.5]
+textdfc = [0.47, 0.73, 1, 1.5]                 #text distance from center
 
 for i, nasaid in enumerate([199,299,399,499]):
     obj = Horizons(id=nasaid, location="@sun", epochs=ss.time, id_type='id').vectors()
     ss.add_planet(Object(nasaid, 20*sizes[i], colors[i], [np.double(obj[xi]) for xi in ['x','y','z']], [np.double(obj[vxi]) for vxi in ['vx','vy','vz']]))
-    ax.text(0, -(orbrad[i]+0.1), names[i], color=colors[i], zorder=1000, ha='center', fontsize='small')
+    ax.text(0, -(textdfc[i]+0.1), names[i], color=colors[i], zorder=1000, ha='center', fontsize='small')
 
 def animate(i):
     return ss.evolve()
