@@ -1,2 +1,6 @@
 # SolarSystemSim
-A somewhat realistic animation of solar system
+A somewhat realistic animation of **Solar System**
+
+
+
+
