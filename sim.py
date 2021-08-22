@@ -1,5 +1,4 @@
-#reference used from this article
-# "https://medium.com/analytics-vidhya/simulating-the-solar-system-with-under-100-lines-of-python-code-5c53b3039fc6"
+
 
 import numpy as np
 import matplotlib.pyplot as plt
